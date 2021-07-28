@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
@@ -23,4 +24,4 @@ app.config.from_object('config.DevConfig')
 db = SQLAlchemy(app)
 
 from app.users.models import User # is here due to circular_imports for db.create_all() use
-db.create_all()
+migrate = Migrate(app, db)
