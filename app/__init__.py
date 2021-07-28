@@ -1,10 +1,10 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
 import app.exceptions as app_exception
+from app.extensions import db
 
 
 def register_blueprint(app):
@@ -21,7 +21,7 @@ register_blueprint(app)
 register_error_handlers(app)
 app.config.from_object('config.DevConfig')
 
-db = SQLAlchemy(app)
+db.init_app(app)
 
-from app.users.models import User # is here due to circular_imports for db.create_all() use
+from app.users.models import User # is here due to circular_imports for migrate use
 migrate = Migrate(app, db)
