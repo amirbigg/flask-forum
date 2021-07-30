@@ -1,10 +1,9 @@
 from flask import Flask
-from flask_migrate import Migrate
 
 from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
 import app.exceptions as app_exception
-from app.extensions import db
+from app.extensions import db, migrate
 
 
 def register_blueprint(app):
@@ -24,4 +23,4 @@ app.config.from_object('config.DevConfig')
 db.init_app(app)
 
 from app.users.models import User # is here due to circular_imports for migrate use
-migrate = Migrate(app, db)
+migrate.init_app(app, db)

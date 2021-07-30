@@ -1,0 +1,17 @@
+{% if form.code and form.code.errors %}
+  {% for error in form.code.errors %}
+    <p class="alert alert-danger">{{ error }}</p>
+  {% endfor %}
+{% endif %}
+
+{% if form.phone and form.phone.errors %}
+  {% for error in form.phone.errors %}
+    <p class="alert alert-danger">{{ error }}</p>
+  {% endfor %}
+{% endif %}
+
+{% if form.verify and form.verify.errors %}
+  {% for error in form.verify.errors %}
+    <p class="alert alert-danger">{{ error }}</p>
+  {% endfor %}
+{% endif %}
