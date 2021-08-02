@@ -3,7 +3,7 @@ from flask import Flask
 from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
 import app.exceptions as app_exception
-from app.extensions import db, migrate
+from app.extensions import db, migrate, login_manager
 
 
 def register_blueprint(app):
@@ -24,3 +24,4 @@ db.init_app(app)
 
 from app.users.models import User # is here due to circular_imports for migrate use
 migrate.init_app(app, db)
+login_manager.init_app(app)

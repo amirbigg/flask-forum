@@ -20,3 +20,7 @@ class UserRegistrationForm(FlaskForm):
 
 class UserCodeVerifyForm(FlaskForm):
 	code = StringField('Code')
+
+
+class UserLoginForm(FlaskForm):
+	phone = StringField('Phone')
