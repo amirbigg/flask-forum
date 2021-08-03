@@ -25,3 +25,14 @@ db.init_app(app)
 from app.users.models import User # is here due to circular_imports for migrate use
 migrate.init_app(app, db)
 login_manager.init_app(app)
+
+
+@app.before_request
+def before_request():
+	print('This is before any request')
+
+@app.after_request
+def after_request(response):
+	print('This is after any request')
+	print(response)
+	return response   # middleware
