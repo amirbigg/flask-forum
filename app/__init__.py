@@ -4,6 +4,7 @@ from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
 import app.exceptions as app_exception
 from app.extensions import db, migrate, login_manager
+from app.users.models import User, Code
 
 
 def register_blueprint(app):
@@ -15,9 +16,20 @@ def register_error_handlers(app):
 	app.register_error_handler(500, app_exception.server_error)
 
 
+def register_shell_context(app):
+	def shell_context():
+		return {
+			'db': db,
+			'User': User,
+			'Code': Code
+		}
+	app.shell_context_processor(shell_context)
+
+
 app = Flask(__name__)
 register_blueprint(app)
 register_error_handlers(app)
+register_shell_context(app)
 app.config.from_object('config.DevConfig')
 
 db.init_app(app)
