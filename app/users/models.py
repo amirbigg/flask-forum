@@ -24,3 +24,8 @@ class Code(BaseModel):
 
 	def __repr__(self):
 		return f'{self.__class__.__name__} ({self.phone}, {self.number})'
+
+
+class Follow(BaseModel):
+	follower = db.Column(db.Integer)
+	followed = db.Column(db.Integer)

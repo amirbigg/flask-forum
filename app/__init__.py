@@ -4,7 +4,7 @@ from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
 import app.exceptions as app_exception
 from app.extensions import db, migrate, login_manager
-from app.users.models import User, Code
+from app.users.models import User, Code, Follow
 
 
 def register_blueprint(app):
@@ -21,7 +21,8 @@ def register_shell_context(app):
 		return {
 			'db': db,
 			'User': User,
-			'Code': Code
+			'Code': Code,
+			'Follow': Follow,
 		}
 	app.shell_context_processor(shell_context)
 

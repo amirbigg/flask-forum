@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, SubmitField
 from wtforms.validators import ValidationError
 from app.users.models import User, Code
 
@@ -24,3 +24,7 @@ class UserCodeVerifyForm(FlaskForm):
 
 class UserLoginForm(FlaskForm):
 	phone = StringField('Phone')
+
+
+class EmptyForm(FlaskForm):
+	submit = SubmitField('submit')
